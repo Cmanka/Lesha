@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Edit order{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Edit order</h1>
+    <p class="lead">Edit order with pk {{ order.pk }}(<a href="{% url 'orders' %}">go to
+        orders</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="container bg-light text-dark pt-3 pb-3 rounded">
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success btn-block">Update</button>
+        </form>
+    </div>
+{% endblock %}

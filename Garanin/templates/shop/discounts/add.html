@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Add new discount</h1>
+    <p class="lead">You can (<a href="{% url 'home' %}">go to home page</a> or <a href="{% url 'discounts' %}">go to
+        discounts</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="container bg-light text-dark pt-3 pb-3 rounded">
+        <form action="{% url 'add_discount' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success btn-block">Add</button>
+        </form>
+    </div>
+{% endblock %}

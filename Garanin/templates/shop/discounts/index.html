@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Discounts</h1>
+    <p class="lead">Information about all discounts(<a href="{% url 'home' %}">go to home page</a> or <a
+            href="{% url 'add_discount' %}">add new discount</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    {% for discount in discounts %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ discount.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><strong>Description: </strong>{{ discount.description }}</li>
+                        <li><strong>Price: </strong>{{ discount.price }}</li>
+                    </ul>
+                    <div>
+                        <a href="{% url 'edit_discount' discount.pk %}" type="button"
+                           class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{% url 'delete_discount' discount.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Clients</h1>
+    <p class="lead">Information about all clients(<a href="{% url 'home' %}">go to home page</a> or <a
+            href="{% url 'add_client' %}">add new client</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    {% for client in clients %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ client }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><strong>Email: </strong>{{ client.email }}</li>
+                        <li><strong>Phone: </strong>{{ client.phone }}</li>
+                        <li><strong>Address: </strong>{{ client.address }}</li>
+                    </ul>
+                    <div>
+                        <a href="{% url 'edit_client' client.pk %}" type="button"
+                           class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{% url 'delete_client' client.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

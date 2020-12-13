@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Queries page</h1>
+    <p class="lead">On this page you can get information about all queries in your information
+        system</p>
+{% endblock %}
+{% block bottom_content %}
+    {% for query in queries.items %}
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">{{ query.0 }}</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li> Click on button and get information</li>
+                </ul>
+                <a href="{% url query.1 %}" type="button" class="btn btn-lg btn-block btn-primary">View</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Report page</h1>
+    <p class="lead">On this page you can get pdf file about IS (<a href="{% url 'get_pdf' %}" class="btn btn-sm btn-primary">Get
+        PDF</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="container pt-3 pb-3 rounded">
+        <div class="mt-4 mb-4">
+            <table class="table table-primary table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Employee fio</th>
+                    <th>Employee email</th>
+                    <th>Employee phone</th>
+                    <th>Employee position</th>
+                    <th>Employee order</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ employee }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.phone }}</td>
+                        <td>{{ employee.position }}</td>
+                        <td>
+                            {% for order in employee.order_set.all %}
+                                {{ order }}<br>
+                            {% empty %}
+                                Not found order
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

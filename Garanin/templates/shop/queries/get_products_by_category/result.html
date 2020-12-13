@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Query result</h1>
+    <p class="lead">go (to <a href="{% url 'home' %}">home</a> or to <a
+            href="{% url 'queries' %}">queries</a>)
+    </p>
+    <p><strong>Products:</strong>{% for result in results %}
+        {{ result.0 }};
+    {% endfor %}
+    </p>
+{% endblock %}

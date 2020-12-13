@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Products</h1>
+    <p class="lead">Information about all products(<a href="{% url 'home' %}">go to home page</a> or <a
+            href="{% url 'add_product' %}">add new product</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    {% for product in products %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ product.name }}</h4>
+                </div>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="" style="height:225px;width:100%;display:block;">
+                {% else %}
+                    <img src="https://icon-library.com/images/no-image-icon/no-image-icon-1.jpg" alt=""
+                         class="mr-3" style="height:225px;width:100%;display:block;">
+                {% endif %}
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><strong>Producer: </strong>{{ product.producer }}</li>
+                        <li><strong>Category: </strong>{{ product.category }}</li>
+                        <li><strong>Price: </strong>{{ product.price }}</li>
+                        <li><strong>Discount: </strong>{{ product.discount }}</li>
+                        <li><strong>Is on shop: </strong>{{ product.is_on_shop }}</li>
+                    </ul>
+                    <div>
+                        <a href="{% url 'edit_product' product.pk %}" type="button"
+                           class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{% url 'delete_product' product.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

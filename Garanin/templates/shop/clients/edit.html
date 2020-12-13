@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Edit client{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Edit client</h1>
+    <p class="lead">Edit client with pk {{ client.pk }}(<a href="{% url 'clients' %}">go to
+        categories</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="container bg-light text-dark pt-3 pb-3 rounded">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success btn-block">Update</button>
+        </form>
+    </div>
+{% endblock %}

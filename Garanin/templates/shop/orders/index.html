@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Orders</h1>
+    <p class="lead">Information about all orders(<a href="{% url 'home' %}">go to home page</a> or <a
+            href="{% url 'add_order' %}">add new order</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    {% for order in orders %}
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">Order {{ order.pk }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><strong>Client: </strong>{{ order.client }}</li>
+                        <li><strong>Product: </strong>{{ order.product }}</li>
+                        <li><strong>Employee: </strong>{{ order.employee }}</li>
+                        <li><strong>Date: </strong>{{ order.date }}</li>
+                    </ul>
+                    <div>
+                        <a href="{% url 'edit_order' order.pk %}" type="button"
+                           class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{% url 'delete_order' order.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Home</h1>
+    {% if request.user.is_authenticated %}
+        <p class="lead">On this page you can get information about all models in your information
+            system</p>
+    {% else %}
+        <p class="lead">On this page you can get information about all models in your information
+            system but you need <a href="{% url 'login' %}">authorizate</a></p>
+    {% endif %}
+
+{% endblock %}
+{% block bottom_content %}
+    {% if request.user.is_authenticated %}
+        {% for model in models.items %}
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ model.0 }}</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{ model.1.1 }}</li>
+                    </ul>
+                    <a href="{% url model.1.0 %}" type="button" class="btn btn-lg btn-block btn-primary">View</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

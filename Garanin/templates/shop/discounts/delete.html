@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Delete confirm{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Delete confirmation</h1>
+    <p class="lead">Delete discount with pk {{ discount.pk }}(<a href="{% url 'discounts' %}">go to
+        discounts</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="container text-dark pt-3 pb-3 rounded">
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure want to delete discount with name "{{ object }}"?</p>
+            <input type="submit" value="Confirm" class="btn btn-danger">
+        </form>
+    </div>
+{% endblock %}

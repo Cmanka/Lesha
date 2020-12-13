@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Edit category{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Edit category</h1>
+    <p class="lead">Edit category with pk {{ category.pk }}(<a href="{% url 'categories' %}">go to
+        categories</a>)</p>
+{% endblock %}
+{% block bottom_content %}
+    <div class="container bg-light text-dark pt-3 pb-3 rounded">
+        <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success btn-block">Update</button>
+        </form>
+    </div>
+{% endblock %}

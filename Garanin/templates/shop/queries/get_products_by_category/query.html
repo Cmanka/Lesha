@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Get products by category</h1>
+    <p class="lead">enter button and get products (to <a href="{% url 'home' %}">home</a> or to <a
+            href="{% url 'queries' %}">queries</a>)
+    </p>
+    <div class="text-center">
+        <form method="post" class="text-center">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" value="Get data" class="btn btn-primary">
+        </form>
+    </div>
+
+{% endblock %}

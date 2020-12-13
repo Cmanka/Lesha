@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PDF output</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+    </style>
+</head>
+<body>
+<div class="mt-4 mb-4">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Employee fio</th>
+            <th>Employee email</th>
+            <th>Employee phone</th>
+            <th>Employee position</th>
+            <th>Employee order</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.phone }}</td>
+                <td>{{ employee.position }}</td>
+                <td>
+                    {% for order in employee.order_set.all %}
+                        {{ order }}<br>
+                    {% empty %}
+                        Not found order
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<a href="{% url 'home' %}" class="btn btn-success">Back to site</a>
+</body>
+</html>

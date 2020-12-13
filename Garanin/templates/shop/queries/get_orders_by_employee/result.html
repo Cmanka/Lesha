@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block top_content %}
+    <h1 class="display-4">Query result</h1>
+    <p class="lead">go (to <a href="{% url 'home' %}">home</a> or to <a
+            href="{% url 'queries' %}">queries</a>)
+    </p>
+    <ul type="none">
+        {% for result in results %}
+            <li>
+                <strong>Record:</strong>{{ forloop.counter }}<br>
+                <strong>Client last name</strong>: {{ result.0 }}<br/>
+                <strong>Client first name</strong>: {{ result.1 }}<br/>
+                <strong>Product name</strong>: {{ result.2 }}<br/>
+                <strong>Date</strong>: {{ result.3 }}<br/>
+            </li>
+        {% endfor %}
+    </ul>
+
+    </p>
+{% endblock %}
